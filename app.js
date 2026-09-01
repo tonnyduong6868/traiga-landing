@@ -10,8 +10,8 @@
   if (!tray) return;
 
   var STATES = ['run', 'warm', 'idle', 'dead'];
-  var WEIGHT = [0.62, 0.18, 0.16, 0.04];
-  var ROWS = 8;
+  var WEIGHT = [0.40, 0.13, 0.43, 0.04];
+  var ROWS = 6;
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cells = [];
