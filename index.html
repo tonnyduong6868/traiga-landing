@@ -262,24 +262,113 @@
     <p class="eyebrow">Chống ban</p>
     <h2>Cả đàn nhưng không con nào giống con nào.</h2>
     <p class="sec-lead">
-      Lý do phổ biến nhất khiến một cụm acc bay cùng lúc là chúng trông y hệt nhau
-      trong mắt máy chủ. Bốn thứ dưới đây tách chúng ra.
+      Máy chủ không đọc tên account, nó đọc dấu vết kỹ thuật. Đây là những gì nó
+      thấy khi sáu con trong trại cùng hoạt động — tắt lớp ngụy trang để xem cả
+      cụm lộ ra thế nào.
     </p>
 
-    <div class="safe">
-      <div class="sf">
+    <div class="lg">
+      <input type="radio" name="mask" id="mOn" class="sr" checked>
+      <input type="radio" name="mask" id="mOff" class="sr">
+
+      <div class="lg-top">
+        <div class="seg">
+          <label for="mOn">Bật lớp ngụy trang</label>
+          <label for="mOff">Tắt lớp ngụy trang</label>
+        </div>
+        <p class="lg-count"><b class="u">0</b><b class="s">5</b>/5 dấu vết dùng chung</p>
+      </div>
+
+      <div class="lg-body">
+        <table class="lg-t">
+          <caption class="sr">Dấu vết kỹ thuật máy chủ Discord đọc được từ sáu account trong trại</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-c="acc">Account</th>
+              <th scope="col" data-c="screen"><i class="sq t-a"></i>Màn hình</th>
+              <th scope="col" data-c="tz"><i class="sq t-a"></i>Múi giờ</th>
+              <th scope="col" data-c="ja3"><i class="sq t-p"></i>Chữ ký TLS</th>
+              <th scope="col" data-c="sess"><i class="sq t-i"></i>Phiên gateway</th>
+              <th scope="col" data-c="quota"><i class="sq t-o"></i>Hạn mức/giờ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" data-c="acc">gaconlonton</th>
+              <td data-c="screen"><span class="u">1920×1080</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Ho_Chi_Minh</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">cd08e31494f9</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">4h12m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u">34/60</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+            <tr>
+              <th scope="row" data-c="acc">mikevu_92</th>
+              <td data-c="screen"><span class="u">1536×864</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Bangkok</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">7a1f2b60d3</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">51m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u">12/60</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+            <tr>
+              <th scope="row" data-c="acc">bap_ngo</th>
+              <td data-c="screen"><span class="u">2560×1440</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Singapore</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">e4c99a07f5b2</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">2h03m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u">58/60</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+            <tr>
+              <th scope="row" data-c="acc">tho_con_04</th>
+              <td data-c="screen"><span class="u">1366×768</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Ho_Chi_Minh</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">19bd7e4a8c</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">18m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u">5/60</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+            <tr>
+              <th scope="row" data-c="acc">linhpham_vn</th>
+              <td data-c="screen"><span class="u">1440×900</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Manila</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">b06f3d2e91a7</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">6h40m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u">41/60</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+            <tr>
+              <th scope="row" data-c="acc">haiyen_2k</th>
+              <td data-c="screen"><span class="u">1680×1050</span><span class="s">1920×1080</span></td>
+              <td data-c="tz"><span class="u">Asia/Jakarta</span><span class="s">Asia/Ho_Chi_Minh</span></td>
+              <td data-c="ja3"><span class="u">5fa2c8b41d</span><span class="s">cd08e31494f9</span></td>
+              <td data-c="sess"><span class="u">1h27m</span><span class="s warn">không giữ</span></td>
+              <td data-c="quota"><span class="u ok">60/60 · dừng</span><span class="s warn">60/60 · vẫn chạy</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="lg-say">
+        <span class="u">Sáu con, sáu bộ dấu vết. Máy chủ không có gì để nối chúng lại với nhau.</span>
+        <span class="s">Sáu con, một bộ dấu vết. Khoá một con là lộ nốt năm con còn lại.</span>
+      </p>
+    </div>
+
+    <div class="mechs">
+      <div class="mech">
+        <p class="mech-c"><i class="sq t-a"></i>Màn hình · Múi giờ</p>
         <h3>Vân tay riêng</h3>
         <p>Mỗi profile một bộ vân tay trình duyệt cố định — màn hình, phần cứng, múi giờ, ngôn ngữ — không đổi giữa các phiên.</p>
       </div>
-      <div class="sf">
+      <div class="mech">
+        <p class="mech-c"><i class="sq t-p"></i>Chữ ký TLS</p>
         <h3>Ngụy trang tầng TLS</h3>
         <p>Không chỉ đổi User-Agent. Chữ ký bắt tay TLS và thứ tự header đi theo đúng bản Chrome mà acc khai báo.</p>
       </div>
-      <div class="sf">
+      <div class="mech">
+        <p class="mech-c"><i class="sq t-i"></i>Phiên gateway</p>
         <h3>Giữ kết nối sống</h3>
         <p>Khi seed, account vẫn duy trì kết nối thời gian thực và đọc dữ liệu như người đang mở app — không phải chỉ bắn API rồi cút.</p>
       </div>
-      <div class="sf">
+      <div class="mech">
+        <p class="mech-c"><i class="sq t-o"></i>Hạn mức/giờ</p>
         <h3>Hạn mức hành động</h3>
         <p>Nhắn tin, đổi hồ sơ, join server đều có trần theo giờ và theo ngày. Chạm trần thì dừng, không cố.</p>
       </div>
