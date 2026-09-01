@@ -53,7 +53,7 @@
   <div class="lamp" aria-hidden="true"></div>
   <div class="wrap hero-in">
 
-    <p class="eyebrow">Trại Gà v1.0.4 · Windows 10/11 64-bit</p>
+    <p class="eyebrow">Trại Gà v1.0.6 · Windows 10/11 64-bit</p>
 
     <h1>Cả trại gà,<br>gọn trong<br><span class="lit">một màn hình.</span></h1>
 
@@ -114,6 +114,8 @@
       Script nào đang chạy hiện ngay dưới thanh điều hướng kèm tiến độ và nút dừng.
     </p>
 
+    <p class="win-hint">Bấm vào cột trái để xem từng màn hình. Khung cửa sổ đứng yên — chỉ vùng làm việc đổi.</p>
+
     <div class="win">
       <div class="win-bar">
         <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -121,38 +123,38 @@
       </div>
       <div class="win-body">
 
-        <aside class="ui-side" aria-hidden="true">
-          <div class="ui-brand">
+        <aside class="ui-side">
+          <div class="ui-brand" aria-hidden="true">
             <img src="assets/logo-96.png" alt="" width="26" height="26">
             <div>
               <strong>Trại Gà <em>HUB</em></strong>
               <span><b>247</b>/312 đang chạy</span>
             </div>
           </div>
-          <div class="ui-nav">
-            <a class="on"><i class="sq t-a"></i>Tất cả Profile<u>312</u></a>
-            <a><i class="sq t-a"></i>Discord Hub<u>312</u></a>
+          <div class="ui-nav" role="tablist" aria-orientation="vertical" aria-label="Màn hình trong app">
+            <button type="button" data-v="all"><i class="sq t-a"></i>Tất cả Profile<u>312</u></button>
+            <button type="button" data-v="discord"><i class="sq t-a"></i>Discord Hub<u>312</u></button>
             <p>Seeding</p>
-            <a><i class="sq t-a"></i>Soạn kịch bản</a>
-            <a><i class="sq t-a"></i>Auto Chat</a>
+            <button type="button" data-v="script" class="on"><i class="sq t-a"></i>Soạn kịch bản</button>
+            <button type="button" data-v="conversation"><i class="sq t-a"></i>Auto Chat</button>
             <p>Discord</p>
-            <a><i class="sq t-p"></i>Bộ công cụ</a>
-            <a><i class="sq t-p"></i>Lấy Token</a>
-            <a><i class="sq t-p"></i>Hộp thư<u>9</u></a>
-            <a><i class="sq t-p"></i>Listener<span class="live"></span></a>
+            <button type="button" data-v="tools"><i class="sq t-p"></i>Bộ công cụ</button>
+            <button type="button" data-v="token"><i class="sq t-p"></i>Lấy Token</button>
+            <button type="button" data-v="inbox"><i class="sq t-p"></i>Hộp thư<u>9</u></button>
+            <button type="button" data-v="listener"><i class="sq t-p"></i>Listener<span class="live"></span></button>
             <p>Proxy</p>
-            <a><i class="sq t-i"></i>Multi Browser</a>
-            <a><i class="sq t-i"></i>Kiểm tra Proxy</a>
-            <a><i class="sq t-i"></i>Giám sát Proxy</a>
+            <button type="button" data-v="browser"><i class="sq t-i"></i>Multi Browser</button>
+            <button type="button" data-v="ptest"><i class="sq t-i"></i>Kiểm tra Proxy</button>
+            <button type="button" data-v="pmon"><i class="sq t-i"></i>Giám sát Proxy</button>
             <p>Hàng loạt</p>
-            <a><i class="sq t-w"></i>Làm giàu hồ sơ</a>
-            <a><i class="sq t-w"></i>Warm-up account</a>
+            <button type="button" data-v="enrich"><i class="sq t-w"></i>Làm giàu hồ sơ</button>
+            <button type="button" data-v="warmup"><i class="sq t-w"></i>Warm-up account</button>
             <p>Giám sát</p>
-            <a><i class="sq t-o"></i>Phân tích</a>
-            <a><i class="sq t-o"></i>Lên lịch</a>
-            <a><i class="sq t-o"></i>Nhật ký</a>
+            <button type="button" data-v="analytics"><i class="sq t-o"></i>Phân tích</button>
+            <button type="button" data-v="scheduler"><i class="sq t-o"></i>Lên lịch</button>
+            <button type="button" data-v="log"><i class="sq t-o"></i>Nhật ký</button>
           </div>
-          <div class="ui-runs">
+          <div class="ui-runs" aria-hidden="true">
             <p>Script đang chạy <b>2</b></p>
             <div class="run">
               <span>gaconlonton</span>
@@ -165,20 +167,25 @@
               <u>7/25</u>
             </div>
           </div>
-          <div class="ui-foot"><span>ENGINE</span><i class="live"></i></div>
+          <div class="ui-foot" aria-hidden="true"><span>ENGINE</span><i class="live"></i></div>
         </aside>
 
-        <div class="ui-main" aria-hidden="true">
+        <div class="ui-main" id="uiMain" role="tabpanel" tabindex="0">
           <div class="ui-head">
-            <h3>Soạn kịch bản</h3>
+            <div class="ui-ttl">
+              <h3>Soạn thảo kịch bản</h3>
+              <p>Thứ tự &amp; nội dung tin nhắn cho từng tài khoản</p>
+            </div>
             <div class="ui-btns"><span class="gh">AI viết hộ</span><span class="gh">Mẫu</span><span class="pr">Chạy</span></div>
           </div>
-          <div class="ui-script">
-            <div class="ln"><span class="who">gaconlonton</span><span class="msg">ai còn slot kèo hôm nay k mn</span><span class="tm">+0s</span></div>
-            <div class="ln"><span class="who w2">mikevu_92</span><span class="msg">mình vừa vào xong, còn 2 slot</span><span class="tm">+7s</span></div>
-            <div class="ln"><span class="who w3">bap_ngo</span><span class="msg">link đâu ib mình với</span><span class="tm">+19s</span></div>
-            <div class="ln"><span class="who">gaconlonton</span><span class="msg">check pin trên kênh nhé, mình để rồi</span><span class="tm">+31s</span></div>
-            <div class="ln dim"><span class="who w2">mikevu_92</span><span class="msg">ok thanks b</span><span class="tm">+44s</span></div>
+          <div class="ui-fill">
+            <div class="ui-script">
+              <div class="ln"><span class="who">gaconlonton</span><span class="msg">ai còn slot kèo hôm nay k mn</span><span class="tm">+0s</span></div>
+              <div class="ln"><span class="who w2">mikevu_92</span><span class="msg">mình vừa vào xong, còn 2 slot</span><span class="tm">+7s</span></div>
+              <div class="ln"><span class="who w3">bap_ngo</span><span class="msg">link đâu ib mình với</span><span class="tm">+19s</span></div>
+              <div class="ln"><span class="who">gaconlonton</span><span class="msg">check pin trên kênh nhé, mình để rồi</span><span class="tm">+31s</span></div>
+              <div class="ln dim"><span class="who w2">mikevu_92</span><span class="msg">ok thanks b</span><span class="tm">+44s</span></div>
+            </div>
           </div>
           <div class="ui-stat">
             <div><b>Nhịp gõ</b><span>tự nhiên · 38–72 WPM</span></div>
@@ -457,11 +464,11 @@
       <div class="get-main">
         <!-- ▼▼ SỬA LINK TẢI + THÔNG SỐ MỖI KHI RA BẢN MỚI ▼▼ -->
         <a class="btn btn-dl"
-           href="https://github.com/tonnyduong6868/traigaapp/releases/download/v1.0.4/omnilogin-app-setup-1.0.4.exe">
+           href="https://github.com/tonnyduong6868/traigaapp/releases/download/v1.0.6/omnilogin-app-setup-1.0.6.exe">
           Tải Trại Gà cho Windows
         </a>
         <dl class="manifest">
-          <div><dt>Phiên bản</dt><dd>1.0.4</dd></div>
+          <div><dt>Phiên bản</dt><dd>1.0.6</dd></div>
           <div><dt>Dung lượng</dt><dd>78 MB</dd></div>
           <div><dt>Yêu cầu</dt><dd>Windows 10/11 · 64-bit</dd></div>
           <div><dt>Phát hành</dt><dd>02.09.2026</dd></div>
