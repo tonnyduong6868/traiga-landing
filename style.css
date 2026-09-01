@@ -682,6 +682,67 @@ p { margin: 0; text-wrap: pretty; }
   .price-side { border-left: 0; border-top: 1px solid var(--line-2); }
 }
 
+/* ── Tải về ──────────────────────────────────────────── */
+
+.get {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+  gap: clamp(26px, 3.6vw, 52px);
+  align-items: start;
+  margin-top: clamp(38px, 5vw, 58px);
+}
+
+.get-main {
+  padding: clamp(26px, 3.2vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background:
+    radial-gradient(ellipse 92% 66% at 32% 0%, rgba(255, 169, 43, .10), transparent 70%),
+    var(--coop-2);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .42);
+}
+
+.btn-dl { width: 100%; padding-block: 18px; font-size: 1.02rem; }
+
+/* Thông số đọc như nhãn dán trên thùng hàng — cân trái/phải, số canh cột */
+.manifest {
+  margin: 26px 0 0;
+  border-top: 1px solid var(--line-2);
+  font-family: var(--f-mono);
+  font-size: .81rem;
+}
+.manifest > div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+.manifest dt { color: var(--husk-3); letter-spacing: .05em; }
+.manifest dd { margin: 0; color: var(--husk); font-variant-numeric: tabular-nums; }
+
+.get-main .fineprint { max-width: 44ch; line-height: 1.7; }
+.get-main .fineprint strong { color: var(--husk-2); font-weight: 600; }
+.get-main .fineprint a { color: var(--lamp-2); }
+
+.get-steps { list-style: none; margin: 0; padding: 0; display: grid; }
+.get-steps li {
+  display: grid; grid-template-columns: 54px 1fr;
+  gap: 18px; align-items: start;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-2);
+}
+.get-steps li:first-child { border-top: 0; padding-top: 0; }
+.get-steps li:last-child { padding-bottom: 0; }
+.get-steps h3 { font-size: 1.04rem; margin-bottom: 5px; }
+.get-steps p { font-size: .91rem; color: var(--husk-2); max-width: 46ch; }
+.get-steps .no { font-size: 1.18rem; }
+
+@media (max-width: 900px) {
+  .get { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .get-steps li { grid-template-columns: 1fr; gap: 6px; }
+}
+
 /* ── Hỏi đáp ─────────────────────────────────────────── */
 
 .faq { margin-top: clamp(34px, 4.5vw, 50px); border-top: 1px solid var(--line-2); }
@@ -713,6 +774,17 @@ p { margin: 0; text-wrap: pretty; }
   transition: opacity .18s, transform .18s;
 }
 .faq details[open] summary::before { opacity: 0; transform: translateY(-50%) rotate(90deg); }
+
+.faq details code {
+  font-family: var(--f-mono);
+  font-size: .86em;
+  color: var(--lamp-2);
+  background: var(--coop-0);
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
 
 .faq details p {
   padding: 0 32px 22px 0;
