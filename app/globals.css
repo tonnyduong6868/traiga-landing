@@ -259,7 +259,7 @@ p { margin: 0; text-wrap: pretty; }
  */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .cell, .pf-card, .pf-stats li, .pf-quotes figure, .pf-shots figure,
+    .fcard, .pf-card, .pf-stats li, .pf-quotes figure, .pf-shots figure,
     .mech, .life > li, .step, .buy-card {
       animation: reveal-in linear both;
       animation-timeline: view();
@@ -1067,44 +1067,94 @@ p { margin: 0; text-wrap: pretty; }
   border-radius: 0 var(--r) var(--r) 0;
 }
 
-/* ── Bento tính năng ─────────────────────────────────── */
+/* ── Danh mục tính năng ──────────────────────────────── */
 
-.bento {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+/*
+ * Xếp theo đúng bảy nhóm ở cột trái của app. Khối bento cũ trộn chín ô cùng cỡ
+ * nên đọc xong không biết mục nào nằm ở đâu trong phần mềm; đây là danh mục có
+ * tiêu đề nhóm, ai mở app lên là nhận ra ngay chỗ mình vừa đọc.
+ */
+
+.fgroup { margin-top: clamp(32px, 4vw, 52px); }
+.fgroup:first-of-type { margin-top: clamp(24px, 3vw, 36px); }
+
+.fgroup-h {
+  display: flex; align-items: center; gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: .82rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Chấm màu lấy đúng `tone` của nhóm trong app — trang và phần mềm cùng mã màu. */
+.fgroup-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+.fgroup-n {
+  font-size: .68rem; font-weight: 500; letter-spacing: .06em;
+  text-transform: none;
+  color: var(--ink-3); flex: none;
+}
+
+.fgrid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 1px; background: var(--line-2);
   border: 1px solid var(--line-2); border-radius: var(--r);
   overflow: hidden;
 }
 
-.cell {
+.fcard {
   background: var(--bg);
   padding: var(--s-5);
   transition: background .14s;
 }
-.sec-alt .cell { background: var(--bg-1); }
-.cell:hover { background: var(--panel); }
+.sec-alt .fcard { background: var(--bg-1); }
+.fcard:hover { background: var(--panel); }
 
-.cell h3 { margin-bottom: var(--s-2); }
-.cell p { font-size: .9rem; color: var(--ink-2); }
-.cell strong { color: var(--ink); font-weight: 600; }
-.cell em { font-style: italic; color: var(--ink); }
-
-.cell.big { grid-column: span 2; background: var(--panel); }
-.cell.big h3 {
-  font-family: var(--f-mono); font-size: 1.16rem; font-weight: 700; letter-spacing: -.03em;
-}
-.cell.big p { font-size: .98rem; max-width: 54ch; }
-
-.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: var(--s-4) 0 0; padding: 0; }
-.chips li {
-  font-family: var(--f-mono); font-size: .64rem; letter-spacing: .04em;
-  color: var(--ink-2);
-  border: 1px solid var(--line); border-radius: 3px;
-  padding: 3px 8px;
+.fcard h4 {
+  font-family: var(--f-mono);
+  font-size: 1.02rem; font-weight: 700; letter-spacing: -.02em;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0;
 }
 
-@media (max-width: 960px) { .bento { grid-template-columns: repeat(2, 1fr); } .cell.big { grid-column: span 2; } }
-@media (max-width: 620px) { .bento { grid-template-columns: 1fr; } .cell.big { grid-column: span 1; } }
+.fcard-role {
+  font-size: .8rem; color: var(--ink-3);
+  margin: 4px 0 var(--s-4);
+}
+
+.fcard-list { list-style: none; margin: 0; padding: 0; }
+.fcard-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: .88rem; line-height: 1.62; color: var(--ink-2);
+}
+.fcard-list li + li { margin-top: 7px; }
+.fcard-list li::before {
+  content: '·';
+  position: absolute; left: 3px;
+  font-family: var(--f-mono); font-weight: 700;
+  color: var(--ink-3);
+}
+.fcard-list code {
+  font-family: var(--f-mono); font-size: .82em;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 1px 5px;
+  /* Chuỗi dài như socks5://user:pass@host:port không được phá khung ở màn hẹp. */
+  overflow-wrap: anywhere;
+}
+
+/* Nhóm lẻ mục thì ô cuối trải hết hàng, tránh để một khoảng trống hụt bên phải. */
+.fgrid > .fcard:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+@media (max-width: 760px) {
+  .fgrid { grid-template-columns: 1fr; }
+  .fgrid > .fcard:last-child:nth-child(odd) { grid-column: auto; }
+}
 
 /* ── Vòng đời ────────────────────────────────────────── */
 
