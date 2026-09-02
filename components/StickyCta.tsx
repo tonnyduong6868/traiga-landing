@@ -11,7 +11,7 @@ import { contact, pricing } from "@/lib/site";
  *
  * Hai điều kiện để hiện:
  *   1. đã cuộn qua khỏi hero (còn ở hero thì nút thật đang nằm ngay trên màn hình)
- *   2. chưa cuộn tới khối Giá hoặc Tải (tới rồi thì bày hai CTA chồng nhau, thừa)
+ *   2. chưa cuộn tới khối Giá hoặc khối chốt (tới rồi thì bày hai CTA chồng nhau)
  *
  * Dùng IntersectionObserver thay vì nghe sự kiện scroll để khỏi chạy hàm mỗi
  * khung hình.
@@ -22,7 +22,7 @@ export function StickyCta() {
 
   useEffect(() => {
     const hero = document.querySelector(".hero");
-    const offers = document.querySelectorAll("#gia, #tai, .end");
+    const offers = document.querySelectorAll("#mua, .end");
     if (!hero) return;
 
     const heroObs = new IntersectionObserver(

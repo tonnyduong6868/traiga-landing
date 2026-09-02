@@ -4,20 +4,29 @@ import { Incubator } from "./Incubator";
 export function Hero() {
   return (
     <section className="hero">
-      <div className="lamp" aria-hidden="true" />
+      {/* Lưới kỹ thuật mờ phía sau, thay cho chùm sáng đèn úm của bản trước. */}
+      <div className="grid-bg" aria-hidden="true" />
+
       <div className="wrap hero-in">
-        {/* Eyebrow gánh phần rõ nghĩa để H1 được giữ nguyên chất ẩn dụ.
-            Người lạ đọc ba dòng đầu là biết đang xem cái gì, chạy trên đâu. */}
-        <p className="eyebrow">
-          Quản lý account Discord hàng loạt · Windows 10/11 64-bit
+        {/* Chip trạng thái: người lạ đọc một dòng là biết đang xem phần mềm gì,
+            chạy trên hệ điều hành nào, bản mấy. */}
+        <p className="hero-chip">
+          <i className="pulse" aria-hidden="true" />
+          <b>Phần mềm Windows</b>
+          <span className="sep" aria-hidden="true">
+            /
+          </span>
+          quản lý account Discord hàng loạt
+          <span className="sep" aria-hidden="true">
+            /
+          </span>
+          v{release.version}
         </p>
 
         <h1>
           Cả trại gà,
           <br />
-          gọn trong
-          <br />
-          <span className="lit">một màn hình.</span>
+          gọn trong <span className="lit">một màn hình.</span>
         </h1>
 
         <p className="lead">
@@ -26,30 +35,30 @@ export function Hero() {
           làm việc.
         </p>
 
-        <div className="cta-row">
-          <a className="btn" href="#tai">
-            Tải bản cài Windows
-          </a>
-          <a className="btn btn-ghost" href="#gia">
-            Xem giá bản quyền
-          </a>
-        </div>
-
-        {/* Neo giá ngay hero. Trước đây con số nằm mãi section thứ 7 — trên
-            điện thoại là rất nhiều cú vuốt trước khi biết món này bao nhiêu. */}
         <p className="hero-price">
           <span className="hp-num">
             {pricing.amount}
             <em>{pricing.currency}</em>
           </span>
           <span className="hp-note">
-            trả một lần, dùng mãi · không phí duy trì · không giới hạn số account
+            trả một lần, dùng mãi
+            <br />
+            không phí duy trì · không giới hạn số account
           </span>
         </p>
 
+        <div className="cta-row">
+          <a className="btn" href="#mua">
+            Tải bản cài Windows
+          </a>
+          <a className="btn btn-ghost" href="#giaodien">
+            Xem app chạy thế nào
+          </a>
+        </div>
+
         <p className="fineprint">
-          Tải miễn phí, cài xong xem được toàn bộ giao diện · Cần key để chạy việc ·
-          Bản v{release.version}
+          Tải miễn phí, cài xong xem được toàn bộ giao diện · Cần key để chạy việc ·{" "}
+          {release.requires}
         </p>
 
         <Incubator />

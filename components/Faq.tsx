@@ -1,3 +1,5 @@
+import { SectionHead } from "./SectionHead";
+
 const QA: { q: string; a: React.ReactNode }[] = [
   {
     q: "Chạy được trên máy nào?",
@@ -51,10 +53,10 @@ export function Faq() {
   return (
     <section id="hoidap" className="sec">
       <div className="wrap wrap-narrow">
-        <p className="eyebrow">Hỏi đáp</p>
+        <SectionHead no="07" tag="Hỏi đáp" meta={`${QA.length} câu`} />
         <h2>Câu hay được hỏi nhất.</h2>
 
-        <div className="faq">
+        <div className="faq" style={{ marginTop: "var(--s-6)" }}>
           {QA.map((item) => (
             <details key={item.q}>
               <summary>{item.q}</summary>

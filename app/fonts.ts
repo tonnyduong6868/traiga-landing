@@ -1,36 +1,29 @@
-import { Bricolage_Grotesque, Be_Vietnam_Pro, JetBrains_Mono } from 'next/font/google'
+import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google'
 
 /**
- * Bản gốc nạp 3 font qua <link> tới fonts.googleapis.com.
- * next/font tải sẵn lúc build và tự host, nên bỏ được request bên thứ ba
- * và tránh nhảy chữ khi font về muộn.
+ * Hai font, đúng hai vai.
+ *
+ * Bản trước dùng Bricolage Grotesque cho tiêu đề — một font hiển thị mềm, hợp
+ * quán cà phê hơn là phần mềm. Sản phẩm này là công cụ kỹ thuật nên chữ phải
+ * nói đúng điều đó: Plex Sans cho phần đọc, JetBrains Mono cho mọi thứ máy đo
+ * được (số liệu, nhãn, mã, bảng).
+ *
+ * Cả hai đều có bộ ký tự tiếng Việt nên bỏ được font đệm thứ ba.
  */
 
-// Font hiển thị — biến thiên theo opsz/wdth đúng như bản gốc.
-export const bricolage = Bricolage_Grotesque({
+// Chữ chạy và tiêu đề phụ.
+export const plex = IBM_Plex_Sans({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
-  axes: ['opsz', 'wdth'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-bricolage',
+  variable: '--font-plex',
 })
 
-// Font chữ chạy — không phải variable font nên phải liệt kê weight.
-export const beVietnam = Be_Vietnam_Pro({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500', '600'],
+// Tiêu đề lớn, nhãn, số liệu, bảng — variable font nên chỉnh weight thoải mái.
+export const mono = JetBrains_Mono({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
   display: 'swap',
-  variable: '--font-bevietnam',
+  variable: '--font-mono',
 })
 
-// Font mono cho eyebrow, số liệu và bảng.
-export const jetbrains = JetBrains_Mono({
-  subsets: ['latin', 'vietnamese'],
-  display: 'swap',
-  variable: '--font-jetbrains',
-})
-
-export const fontClassNames = [
-  bricolage.variable,
-  beVietnam.variable,
-  jetbrains.variable,
-].join(' ')
+export const fontClassNames = [plex.variable, mono.variable].join(' ')

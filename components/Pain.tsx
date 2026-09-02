@@ -14,7 +14,7 @@ export function Pain() {
           ))}
         </ul>
         <p className="pain-out">
-          Trại Gà nhận phần lặp đi lặp lại. Anh giữ phần phải nghĩ.
+          Trại Gà nhận phần lặp đi lặp lại. <b>Anh giữ phần phải nghĩ.</b>
         </p>
       </div>
     </section>

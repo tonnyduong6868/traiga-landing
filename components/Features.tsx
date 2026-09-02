@@ -1,3 +1,5 @@
+import { SectionHead } from "./SectionHead";
+
 type Feature = {
   title: string;
   body: React.ReactNode;
@@ -61,10 +63,13 @@ export function Features() {
   return (
     <section id="tinhnang" className="sec">
       <div className="wrap">
-        <p className="eyebrow">Tính năng</p>
+        <SectionHead no="03" tag="Tính năng" meta={`${FEATURES.length} mục`} />
         <h2>Chín việc anh đang làm tay.</h2>
+        <p className="sec-lead">
+          Không có mục nào khoá theo gói. Mua là mở hết.
+        </p>
 
-        <div className="bento">
+        <div className="bento" style={{ marginTop: "var(--s-6)" }}>
           {FEATURES.map((f) => (
             <article key={f.title} className={f.big ? "cell big" : "cell"}>
               <h3>{f.title}</h3>

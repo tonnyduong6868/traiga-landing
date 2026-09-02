@@ -1,9 +1,9 @@
-import { contact } from "@/lib/site";
+import { contact, release } from "@/lib/site";
 
 export function EndCta() {
   return (
     <section className="end">
-      <div className="lamp lamp-sm" aria-hidden="true" />
+      <div className="grid-bg" aria-hidden="true" />
       <div className="wrap">
         <h2>
           Đàn gà không tự nuôi nó.
@@ -23,6 +23,10 @@ export function EndCta() {
             Nhắn Messenger
           </a>
         </div>
+        <p className="fineprint">
+          Hoặc tải bản cài trước, xem giao diện rồi tính · v{release.version} ·{" "}
+          {release.requires}
+        </p>
       </div>
     </section>
   );

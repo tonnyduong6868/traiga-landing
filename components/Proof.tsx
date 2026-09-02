@@ -1,10 +1,11 @@
 import { asset, contact, proof } from "@/lib/site";
+import { SectionHead } from "./SectionHead";
 
 /**
- * Khối tin cậy, đặt ngay sau Hero.
+ * Khối tin cậy, đặt ngay sau khối Giá.
  *
- * Trang cũ không có một mẩu bằng chứng nào — người lạ được mời chi 2.5 triệu
- * cho một người họ chưa biết là ai. Khối này lấp chỗ đó.
+ * Đúng lúc người đọc vừa thấy con số 2.500.000₫ là lúc họ hỏi "mua của ai".
+ * Trang cũ không có một mẩu bằng chứng nào để trả lời câu đó.
  *
  * Ba phần đầu (số liệu, nhận xét, ảnh app) đọc từ `proof` trong lib/site.ts và
  * TỰ ẨN khi mảng rỗng — hiện đang rỗng vì chưa có dữ liệu thật, và bịa ra thì
@@ -17,8 +18,10 @@ export function Proof() {
   const hasShots = proof.shots.length > 0;
 
   return (
-    <section id="tincay" className="sec sec-tight">
+    <section id="tincay" className="sec sec-alt">
       <div className="wrap">
+        <SectionHead no="06" tag="Mua của ai" meta="bán trực tiếp" />
+
         {hasStats && (
           <ul className="pf-stats">
             {proof.stats.map((s) => (
@@ -53,10 +56,7 @@ export function Proof() {
           </div>
         )}
 
-        <p className="eyebrow">Mua của ai</p>
-        <h2 className="h-mid pf-h">
-          Chưa quen thì đây là những gì anh nắm chắc được.
-        </h2>
+        <h2 className="pf-h">Chưa quen thì đây là những gì anh nắm chắc được.</h2>
 
         <div className="pf-grid">
           {proof.assurances.map((a) => (

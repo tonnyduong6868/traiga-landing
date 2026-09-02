@@ -1,3 +1,5 @@
+import { SectionHead } from "./SectionHead";
+
 const STEPS = [
   {
     title: "Nhập acc, lấy token",
@@ -31,19 +33,21 @@ const STEPS = [
 
 export function Lifecycle() {
   return (
-    <section className="sec">
-      <div className="wrap">
-        <p className="eyebrow">Quy trình</p>
+    <section className="sec sec-alt">
+      <div className="wrap wrap-narrow">
+        <SectionHead no="04" tag="Vòng đời" meta={`${STEPS.length} bước`} />
         <h2>Vòng đời một con gà.</h2>
         <p className="sec-lead">
           Bảy bước, chạy trong app từ đầu tới cuối. Thứ tự này có lý do — bỏ bước nào
           cũng trả giá ở bước sau.
         </p>
 
-        <ol className="life">
+        <ol className="life" style={{ marginTop: "var(--s-6)" }}>
           {STEPS.map((s, i) => (
             <li key={s.title}>
-              <span className="no">{String(i + 1).padStart(2, "0")}</span>
+              <span className="no" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>

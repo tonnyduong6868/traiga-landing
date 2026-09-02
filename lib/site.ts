@@ -98,19 +98,29 @@ export const proof = {
   ],
 } as const
 
-/** Các bước từ lúc bấm nút tới lúc chạy được — bấm CTA xong khách hết mù mờ. */
-export const buySteps = [
+/**
+ * Đường đi từ lúc tò mò tới lúc app chạy được.
+ *
+ * Bản trước tách làm hai danh sách — "3 bước sau khi bấm nút" ở khối Giá và
+ * "4 bước cài đặt" ở khối Tải — nói gần như cùng một chuyện ở hai chỗ cách
+ * nhau một màn hình. Gộp lại còn một mạch duy nhất.
+ */
+export const steps = [
   {
-    title: 'Anh nhắn',
-    body: 'Zalo hoặc Messenger. Nói anh cần chạy bao nhiêu account là đủ.',
+    title: 'Tải và cài',
+    body: 'Chạy file .exe, cài một lần. Chưa phải trả gì, chưa cần nhắn ai.',
   },
   {
-    title: 'Tôi cho xem app chạy',
-    body: 'Chia sẻ màn hình, chạy thử đúng việc anh định làm. Hỏi gì đáp nấy.',
+    title: 'Mở app, chép mã máy',
+    body: 'Màn hình đầu tiên hiện mã máy của anh kèm nút Chép. Giao diện xem được hết.',
   },
   {
-    title: 'Chuyển khoản, nhận key',
-    body: 'Anh gửi mã máy hiện trong app, tôi gửi lại key. Nhập là chạy.',
+    title: 'Nhắn Zalo, chuyển khoản',
+    body: 'Gửi mã máy cho tôi. Muốn xem app chạy thật trước thì nói, tôi chia sẻ màn hình.',
+  },
+  {
+    title: 'Dán key, chạy',
+    body: 'Tôi gửi key trong ngày. Dán vào ô kích hoạt, từ lần sau app mở thẳng.',
   },
 ] as const
 
@@ -124,11 +134,11 @@ export const release = {
   allReleasesUrl: 'https://github.com/tonnyduong6868/traigaapp/releases',
 } as const
 
+/** Thứ tự khớp đúng thứ tự khối trên trang, kèm số hiệu hiện ở đầu mỗi khối. */
 export const nav = [
   { href: '#giaodien', label: 'Giao diện' },
-  { href: '#tinhnang', label: 'Tính năng' },
   { href: '#antoan', label: 'Chống ban' },
-  { href: '#gia', label: 'Giá' },
-  { href: '#tai', label: 'Tải về' },
+  { href: '#tinhnang', label: 'Tính năng' },
+  { href: '#mua', label: 'Giá & tải' },
   { href: '#hoidap', label: 'Hỏi đáp' },
 ] as const

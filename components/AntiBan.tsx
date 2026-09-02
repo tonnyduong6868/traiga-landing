@@ -7,6 +7,8 @@
  * bật) và `.s` (tắt), CSS chỉ ẩn/hiện.
  */
 
+import { SectionHead } from "./SectionHead";
+
 type Pair = { u: string; s: string; uOk?: true; sWarn?: true };
 
 type Row = {
@@ -119,7 +121,7 @@ export function AntiBan() {
   return (
     <section id="antoan" className="sec sec-alt">
       <div className="wrap">
-        <p className="eyebrow">Chống ban</p>
+        <SectionHead no="02" tag="Chống ban" meta="6 account · 5 dấu vết" />
         <h2>Cả đàn nhưng không con nào giống con nào.</h2>
         <p className="sec-lead">
           Máy chủ không đọc tên account, nó đọc dấu vết kỹ thuật. Đây là những gì nó

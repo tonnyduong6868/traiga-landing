@@ -17,7 +17,7 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a className="btn btn-sm" href="#gia">
+        <a className="btn btn-sm" href="#mua">
           Mua bản quyền
         </a>
       </div>
