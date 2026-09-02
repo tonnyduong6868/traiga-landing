@@ -50,6 +50,70 @@ export const contact = {
   messenger: 'https://m.me/traiga',
 } as const
 
+/**
+ * Bằng chứng cho khối Proof.
+ *
+ * Ba mảng đầu đang RỖNG và cố ý để rỗng — không bịa số khách, không bịa review.
+ * Khối Proof tự ẩn phần nào không có dữ liệu, nên trang vẫn chạy đúng khi chưa
+ * điền gì. Có số thật tới đâu thì thêm tới đó.
+ *
+ * `assurances` thì luôn hiện: đó là những điều tin cậy không cần dữ liệu khách
+ * hàng, chỉ cần nói thật.
+ */
+export const proof = {
+  /** Ví dụ: { value: '312', label: 'account đang chạy trên máy tôi' } */
+  stats: [] as { value: string; label: string }[],
+
+  /** Ví dụ: { text: 'Chạy 2 tháng chưa dính con nào.', who: 'Khách mua tháng 6' } */
+  quotes: [] as { text: string; who: string }[],
+
+  /** Ảnh chụp app thật, đặt file vào public/assets/ rồi khai báo ở đây. */
+  shots: [] as { src: string; alt: string; caption: string }[],
+
+  assurances: [
+    {
+      title: 'Xem app chạy thật trước khi trả tiền',
+      body:
+        'Nhắn trước, tôi chia sẻ màn hình cho anh xem app chạy trên máy tôi — ' +
+        'kịch bản thật, account thật, không phải video dựng sẵn.',
+    },
+    {
+      title: 'Tải về trước, không cần trả gì',
+      body:
+        'Bản cài đầy đủ, không cắt tính năng. Cài xong app mở được, xem được ' +
+        'toàn bộ giao diện. Chỉ khi chạy việc mới cần key.',
+    },
+    {
+      title: 'Trả một lần, không có khoản nào phát sinh',
+      body:
+        'Không phí duy trì, không phí theo account, không bán thêm gói. ' +
+        'Cập nhật về sau miễn phí.',
+    },
+    {
+      title: 'Nói rõ cái không làm được',
+      body:
+        'Không công cụ nào cam kết 0% ban, kể cả cái này. Proxy và account anh ' +
+        'tự lo. Tôi nói trước để anh khỏi mua nhầm kỳ vọng.',
+    },
+  ],
+} as const
+
+/** Các bước từ lúc bấm nút tới lúc chạy được — bấm CTA xong khách hết mù mờ. */
+export const buySteps = [
+  {
+    title: 'Anh nhắn',
+    body: 'Zalo hoặc Messenger. Nói anh cần chạy bao nhiêu account là đủ.',
+  },
+  {
+    title: 'Tôi cho xem app chạy',
+    body: 'Chia sẻ màn hình, chạy thử đúng việc anh định làm. Hỏi gì đáp nấy.',
+  },
+  {
+    title: 'Chuyển khoản, nhận key',
+    body: 'Anh gửi mã máy hiện trong app, tôi gửi lại key. Nhập là chạy.',
+  },
+] as const
+
 export const release = {
   version: '1.1.0',
   size: '78 MB',

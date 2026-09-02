@@ -1,4 +1,4 @@
-import { release } from "@/lib/site";
+import { pricing, release } from "@/lib/site";
 import { Incubator } from "./Incubator";
 
 export function Hero() {
@@ -6,8 +6,10 @@ export function Hero() {
     <section className="hero">
       <div className="lamp" aria-hidden="true" />
       <div className="wrap hero-in">
+        {/* Eyebrow gánh phần rõ nghĩa để H1 được giữ nguyên chất ẩn dụ.
+            Người lạ đọc ba dòng đầu là biết đang xem cái gì, chạy trên đâu. */}
         <p className="eyebrow">
-          Trại Gà v{release.version} · Windows 10/11 64-bit
+          Quản lý account Discord hàng loạt · Windows 10/11 64-bit
         </p>
 
         <h1>
@@ -33,8 +35,21 @@ export function Hero() {
           </a>
         </div>
 
+        {/* Neo giá ngay hero. Trước đây con số nằm mãi section thứ 7 — trên
+            điện thoại là rất nhiều cú vuốt trước khi biết món này bao nhiêu. */}
+        <p className="hero-price">
+          <span className="hp-num">
+            {pricing.amount}
+            <em>{pricing.currency}</em>
+          </span>
+          <span className="hp-note">
+            trả một lần, dùng mãi · không phí duy trì · không giới hạn số account
+          </span>
+        </p>
+
         <p className="fineprint">
-          Tải miễn phí · Cần key để chạy · Trả một lần, dùng mãi
+          Tải miễn phí, cài xong xem được toàn bộ giao diện · Cần key để chạy việc ·
+          Bản v{release.version}
         </p>
 
         <Incubator />

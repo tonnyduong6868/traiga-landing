@@ -1,4 +1,4 @@
-import { contact, pricing } from "@/lib/site";
+import { buySteps, contact, pricing } from "@/lib/site";
 
 export function Pricing() {
   return (
@@ -29,8 +29,24 @@ export function Pricing() {
                 Nhắn Messenger
               </a>
             </div>
+            {/* Cả hai nút đều đổ vào chat. Trước đây khách bấm mà không biết
+                sẽ phải làm gì tiếp — ba bước dưới đây trả lời đúng câu đó. */}
+            <ol className="buy-steps">
+              {buySteps.map((s, i) => (
+                <li key={s.title}>
+                  <span className="bs-no" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <b>{s.title}</b>
+                    <span>{s.body}</span>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
             <p className="fineprint">
-              Nhắn trước để được xem app chạy thật qua màn hình chia sẻ.
+              Chưa định mua cũng cứ nhắn — xem app chạy không mất gì.
             </p>
           </div>
 

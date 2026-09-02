@@ -32,6 +32,23 @@
 
   --pad: clamp(72px, 9vw, 132px);
   --r: 14px;
+
+  /* Thang khoảng cách — trước đây mọi margin đều là số lẻ viết tay, khó giữ nhịp.
+     Bậc nhân đôi dần, đủ dùng mà không phải nhớ nhiều. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* Chiều sâu — nền sáng dần theo tầng, viền sáng ở mép trên giả ánh đèn úm
+     hắt xuống. Bóng đổ trên nền tối gần như vô hình nên phải làm cách này. */
+  --lift-1: inset 0 1px 0 rgba(240, 229, 209, .05);
+  --lift-2: inset 0 1px 0 rgba(240, 229, 209, .07), 0 1px 2px rgba(0, 0, 0, .4);
+  --lift-3: inset 0 1px 0 rgba(240, 229, 209, .09), 0 10px 30px rgba(0, 0, 0, .38);
 }
 
 * { box-sizing: border-box; }
@@ -92,6 +109,18 @@ h1, h2, h3 {
 h1 { font-size: clamp(2.9rem, 8.4vw, 6.4rem); }
 h2 { font-size: clamp(1.95rem, 4.4vw, 3.5rem); line-height: 1.06; }
 h3 { font-size: 1.06rem; font-weight: 700; letter-spacing: -.014em; line-height: 1.28; }
+
+/* Bậc trung gian. Nhảy thẳng từ h2 3.5rem xuống h3 1.06rem là hụt một tầng —
+   tiêu đề khối phụ không có cỡ nào vừa, đành mượn h2 (quá to) hoặc h3 (quá nhỏ). */
+.h-mid {
+  font-family: var(--f-disp);
+  font-weight: 800;
+  letter-spacing: -.022em;
+  line-height: 1.14;
+  font-size: clamp(1.34rem, 2.3vw, 1.86rem);
+  margin: 0;
+  text-wrap: balance;
+}
 
 p { margin: 0; text-wrap: pretty; }
 
@@ -167,6 +196,91 @@ p { margin: 0; text-wrap: pretty; }
 
 .btn-sm { padding: 9px 17px; font-size: .86rem; border-radius: 8px; }
 
+/* ── Hiện dần khi cuộn tới ───────────────────────────── */
+
+/*
+ * Chạy bằng animation-timeline: view() — thuần CSS, không cần JavaScript.
+ *
+ * Cố ý không dùng IntersectionObserver: cách đó phải đặt nội dung ở opacity 0
+ * trước rồi mới gỡ ra bằng JS, script hỏng một cái là trang trắng. Ở đây trình
+ * duyệt nào không hiểu thuộc tính này thì bỏ qua cả khối, nội dung hiện bình
+ * thường — hỏng kiểu an toàn.
+ *
+ * Khoảng chạy dừng ở `entry 55%` chứ không kéo tới `cover`: khối nằm sát đáy
+ * trang có khi cuộn hết cỡ vẫn chưa đạt `cover`, và sẽ kẹt lại ở trạng thái mờ.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cell,
+    .pf-card,
+    .pf-stats li,
+    .pf-quotes figure,
+    .pf-shots figure,
+    .mech,
+    .life > li,
+    .get-steps > li,
+    .price {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Thanh CTA dính đáy (chỉ điện thoại) ─────────────── */
+
+.sticky-cta { display: none; }
+
+@media (max-width: 720px) {
+  .sticky-cta {
+    display: block;
+    position: fixed; inset: auto 0 0 0; z-index: 60;
+    background: rgba(23, 18, 12, .93);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    /* Chừa chỗ cho thanh gạt của iPhone, nếu không nút bị che mất một nửa */
+    padding: var(--s-3) 0 calc(var(--s-3) + env(safe-area-inset-bottom));
+    transform: translateY(110%);
+    visibility: hidden;
+    transition: transform .22s ease, visibility .22s;
+  }
+  .sticky-cta.on { transform: none; visibility: visible; }
+
+  .sc-in {
+    width: min(1180px, 100% - 32px); margin-inline: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--s-4);
+  }
+  .sc-price {
+    font-family: var(--f-disp); font-weight: 800;
+    letter-spacing: -.028em; line-height: 1.1;
+    font-size: 1.16rem; color: var(--husk);
+  }
+  .sc-price em {
+    font-style: normal; color: var(--lamp);
+    font-size: .68em; margin-left: 2px;
+  }
+  .sc-price span {
+    display: block;
+    font-family: var(--f-body); font-weight: 400;
+    font-size: .72rem; color: var(--husk-3);
+    letter-spacing: 0;
+  }
+  .sc-in .btn { flex: none; }
+
+  /* Không để thanh đè lên dòng cuối của footer */
+  body { padding-bottom: 76px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-cta { transition: none; }
+}
+
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 
 /* ── Thanh trên ──────────────────────────────────────── */
@@ -226,6 +340,29 @@ p { margin: 0; text-wrap: pretty; }
 .hero-in { position: relative; }
 
 .hero .lead { margin-top: 30px; }
+
+/* Neo giá — đủ to để đọc lướt cũng thấy, chưa to bằng con số ở section Giá */
+.hero-price {
+  display: flex; align-items: baseline; flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  margin-top: var(--s-6);
+}
+.hp-num {
+  font-family: var(--f-disp);
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1;
+  color: var(--husk);
+  white-space: nowrap;
+}
+.hp-num em {
+  font-style: normal; color: var(--lamp);
+  font-size: .58em; margin-left: 3px;
+}
+.hp-note {
+  font-size: .92rem; color: var(--husk-2);
+  max-width: 34ch;
+}
+.hero .fineprint { margin-top: var(--s-4); }
 
 /* ── Khay ấp ─────────────────────────────────────────── */
 
@@ -349,6 +486,103 @@ p { margin: 0; text-wrap: pretty; }
 
 .sec { padding: var(--pad) 0; }
 .sec-alt { background: var(--coop-0); border-block: 1px solid var(--line-2); }
+/* Khối tin cậy ngồi sát Hero nên không cần đệm đầy đủ, để nó dính vào mạch trên */
+.sec-tight { padding: clamp(48px, 6vw, 76px) 0 var(--pad); }
+
+/* ── Khối tin cậy ────────────────────────────────────── */
+
+/* Ba khối dưới đây chỉ render khi lib/site.ts có dữ liệu thật */
+.pf-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s-3);
+  list-style: none; margin: 0 0 clamp(40px, 5vw, 60px); padding: 0;
+}
+.pf-stats li {
+  background: var(--coop-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  box-shadow: var(--lift-1);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+}
+.pf-stats b {
+  display: block;
+  font-family: var(--f-disp);
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.05;
+  color: var(--lamp);
+}
+.pf-stats span {
+  display: block; margin-top: var(--s-2);
+  font-size: .86rem; color: var(--husk-2);
+}
+
+.pf-shots {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+.pf-shots figure { margin: 0; }
+.pf-shots img {
+  width: 100%; border-radius: var(--r);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--lift-3);
+}
+.pf-shots figcaption {
+  margin-top: var(--s-3);
+  font-size: .82rem; color: var(--husk-3);
+}
+
+.pf-quotes {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-4);
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+.pf-quotes figure {
+  margin: 0; padding: var(--s-5);
+  background: var(--coop-2);
+  border: 1px solid var(--line-2);
+  border-left: 2px solid var(--lamp);
+  border-radius: var(--r);
+  box-shadow: var(--lift-1);
+}
+.pf-quotes blockquote {
+  margin: 0; font-size: .97rem; color: var(--husk);
+}
+.pf-quotes figcaption {
+  margin-top: var(--s-3);
+  font-family: var(--f-mono); font-size: .72rem;
+  letter-spacing: .08em; color: var(--husk-3);
+}
+
+.pf-h { margin-top: var(--s-2); max-width: 24ch; }
+
+.pf-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--s-3);
+  margin-top: clamp(32px, 4vw, 44px);
+}
+.pf-card {
+  background: var(--coop-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  box-shadow: var(--lift-1);
+  padding: var(--s-5) var(--s-5) var(--s-6);
+  transition: border-color .18s, background .18s, box-shadow .18s;
+}
+.pf-card:hover {
+  border-color: var(--line);
+  background: var(--coop-3);
+  box-shadow: var(--lift-2);
+}
+.pf-card h3 { color: var(--husk); margin-bottom: var(--s-2); }
+.pf-card p { font-size: .89rem; color: var(--husk-2); }
+
+.pf-line {
+  margin-top: clamp(30px, 4vw, 42px);
+  font-size: .92rem; color: var(--husk-2);
+  max-width: 62ch;
+}
+.pf-line a { color: var(--lamp); text-underline-offset: 3px; }
 
 /* ── Cửa sổ giao diện ────────────────────────────────── */
 
@@ -768,10 +1002,15 @@ p { margin: 0; text-wrap: pretty; }
   background: var(--coop-2);
   border: 1px solid var(--line-2);
   border-radius: var(--r);
+  box-shadow: var(--lift-1);
   padding: 26px 24px 28px;
-  transition: border-color .18s, background .18s;
+  transition: border-color .18s, background .18s, box-shadow .18s;
 }
-.cell:hover { border-color: var(--line); background: var(--coop-3); }
+.cell:hover {
+  border-color: var(--line);
+  background: var(--coop-3);
+  box-shadow: var(--lift-2);
+}
 
 .cell h3 { color: var(--husk); margin-bottom: 11px; }
 .cell p { font-size: .93rem; color: var(--husk-2); }
@@ -1054,6 +1293,30 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 .p-sub { margin-top: 16px; color: var(--husk-2); font-size: .98rem; max-width: 34ch; }
+
+/* Ba bước sau khi bấm nút — gạch nối giữa CTA và việc khách phải làm thật */
+.buy-steps {
+  list-style: none; margin: var(--s-6) 0 0; padding: var(--s-5) 0 0;
+  border-top: 1px solid var(--line-2);
+  display: grid; gap: var(--s-4);
+}
+.buy-steps li { display: flex; gap: var(--s-3); align-items: flex-start; }
+.bs-no {
+  flex: none;
+  width: 22px; height: 22px; margin-top: 1px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: var(--f-mono); font-size: .68rem; font-weight: 700;
+  color: var(--lamp);
+}
+.buy-steps b {
+  display: block; font-size: .93rem; font-weight: 600; color: var(--husk);
+}
+.buy-steps span:not(.bs-no) {
+  display: block; margin-top: 2px;
+  font-size: .87rem; color: var(--husk-2);
+}
 
 .price-side {
   padding: clamp(32px, 4.4vw, 52px);

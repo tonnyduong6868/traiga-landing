@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
+import { Proof } from "@/components/Proof";
 import { Pain } from "@/components/Pain";
 import { AppWindow } from "@/components/AppWindow";
 import { Features } from "@/components/Features";
@@ -10,6 +11,7 @@ import { Download } from "@/components/Download";
 import { Faq } from "@/components/Faq";
 import { EndCta } from "@/components/EndCta";
 import { SiteFooter } from "@/components/SiteFooter";
+import { StickyCta } from "@/components/StickyCta";
 
 export default function Home() {
   return (
@@ -23,6 +25,7 @@ export default function Home() {
 
       <main id="noidung">
         <Hero />
+        <Proof />
         <Pain />
 
         <section id="giaodien" className="sec">
@@ -53,6 +56,7 @@ export default function Home() {
       </main>
 
       <SiteFooter />
+      <StickyCta />
     </>
   );
 }
