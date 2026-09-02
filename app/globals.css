@@ -24,9 +24,11 @@
   --warm:   #FF8A3D;
   --cull:   #FF5F4B;
 
-  --f-disp: 'Bricolage Grotesque', 'Be Vietnam Pro', system-ui, sans-serif;
-  --f-body: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
-  --f-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  /* Font do next/font tự host — biến --font-* khai báo trong app/fonts.ts.
+     Be Vietnam Pro đứng sau font hiển thị để đỡ glyph tiếng Việt còn thiếu. */
+  --f-disp: var(--font-bricolage), var(--font-bevietnam), system-ui, sans-serif;
+  --f-body: var(--font-bevietnam), system-ui, -apple-system, sans-serif;
+  --f-mono: var(--font-jetbrains), ui-monospace, 'Cascadia Mono', monospace;
 
   --pad: clamp(72px, 9vw, 132px);
   --r: 14px;
