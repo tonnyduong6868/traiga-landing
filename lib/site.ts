@@ -67,8 +67,8 @@ export const proof = {
   /** Ví dụ: { text: 'Chạy 2 tháng chưa dính con nào.', who: 'Khách mua tháng 6' } */
   quotes: [] as { text: string; who: string }[],
 
-  /** Ảnh chụp app thật, đặt file vào public/assets/ rồi khai báo ở đây. */
-  shots: [] as { src: string; alt: string; caption: string }[],
+  // Ảnh chụp app KHÔNG khai báo ở đây nữa — bỏ file vào public/assets/shots/
+  // là xong, lib/shots.ts quét thư mục đó lúc build.
 
   assurances: [
     {

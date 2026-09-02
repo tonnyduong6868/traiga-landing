@@ -1,4 +1,5 @@
-import { asset, contact, proof } from "@/lib/site";
+import { contact, proof } from "@/lib/site";
+import { getShots } from "@/lib/shots";
 import { SectionHead } from "./SectionHead";
 
 /**
@@ -7,15 +8,17 @@ import { SectionHead } from "./SectionHead";
  * Đúng lúc người đọc vừa thấy con số 2.500.000₫ là lúc họ hỏi "mua của ai".
  * Trang cũ không có một mẩu bằng chứng nào để trả lời câu đó.
  *
- * Ba phần đầu (số liệu, nhận xét, ảnh app) đọc từ `proof` trong lib/site.ts và
- * TỰ ẨN khi mảng rỗng — hiện đang rỗng vì chưa có dữ liệu thật, và bịa ra thì
- * còn hại hơn không có. Phần `assurances` luôn hiện: nó không cần dữ liệu khách
- * hàng, chỉ cần nói thật về cách bán và về giới hạn của sản phẩm.
+ * Ba phần đầu (số liệu, nhận xét, ảnh app) TỰ ẨN khi chưa có dữ liệu — bịa ra
+ * thì còn hại hơn không có. Số liệu và nhận xét lấy từ `proof` trong site.ts;
+ * ảnh thì quét thẳng thư mục public/assets/shots/ lúc build, bỏ file vào là hiện.
+ * Phần `assurances` luôn hiện: nó không cần dữ liệu khách hàng, chỉ cần nói thật
+ * về cách bán và về giới hạn của sản phẩm.
  */
 export function Proof() {
+  const shots = getShots();
   const hasStats = proof.stats.length > 0;
   const hasQuotes = proof.quotes.length > 0;
-  const hasShots = proof.shots.length > 0;
+  const hasShots = shots.length > 0;
 
   return (
     <section id="tincay" className="sec sec-alt">
@@ -35,10 +38,17 @@ export function Proof() {
 
         {hasShots && (
           <div className="pf-shots">
-            {proof.shots.map((s) => (
+            {shots.map((s) => (
               <figure key={s.src}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset(s.src)} alt={s.alt} loading="lazy" />
+                <img
+                  src={s.src}
+                  alt={s.alt}
+                  width={s.width ?? undefined}
+                  height={s.height ?? undefined}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <figcaption>{s.caption}</figcaption>
               </figure>
             ))}

@@ -1248,7 +1248,13 @@ p { margin: 0; text-wrap: pretty; }
   gap: var(--s-4); margin-bottom: var(--s-6);
 }
 .pf-shots figure { margin: 0; }
-.pf-shots img { width: 100%; border: 1px solid var(--line); border-radius: var(--r); }
+/* width/height nằm sẵn trên thẻ <img> để trình duyệt chừa chỗ; ở đây phải trả
+   lại height: auto, nếu không ảnh bị kéo méo khi cột hẹp lại. */
+.pf-shots img {
+  display: block; width: 100%; height: auto;
+  background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--r);
+}
 .pf-shots figcaption { font-family: var(--f-mono); font-size: .68rem; color: var(--ink-3); margin-top: var(--s-2); }
 
 .pf-quotes {
