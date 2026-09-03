@@ -61,12 +61,14 @@ export function StickyCta() {
     >
       <div className="sc-in">
         <p className="sc-price">
-          {pricing.amount}
-          <em>{pricing.currency}</em>
-          <span>trả một lần</span>
+          <span className="sc-num">{pricing.amount}<em>{pricing.currency}</em></span>
+          <span className="sc-tag">vĩnh viễn</span>
         </p>
-        <a className="btn btn-sm" href={contact.zalo} target="_blank" rel="noopener">
-          Nhắn Zalo để mua
+        <a className="btn btn-sm btn-primary btn-glow" href={contact.zalo} target="_blank" rel="noopener">
+          <svg className="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.03 2 11c0 2.87 1.5 5.43 3.86 7.08l-.86 3.19c-.1.38.27.71.63.58l3.77-1.37c.83.24 1.7.37 2.6.37 5.52 0 10-4.03 10-9s-4.48-9-10-9zm1.09 13.09h-2.18V8.91h2.18v6.18z" />
+          </svg>
+          Nhắn Zalo mua
         </a>
       </div>
     </div>

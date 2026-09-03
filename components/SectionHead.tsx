@@ -19,9 +19,12 @@ export function SectionHead({
 }) {
   return (
     <header className="sh">
-      <span className="sh-no">{no}</span>
-      <span className="sh-tag">{tag}</span>
-      <span className="sh-rule" aria-hidden="true" />
+      <div className="sh-pill">
+        <span className="sh-no">{no}</span>
+        <span className="sh-dot" aria-hidden="true" />
+        <span className="sh-tag">{tag}</span>
+      </div>
+      <div className="sh-rule" aria-hidden="true" />
       {meta && <span className="sh-meta">{meta}</span>}
     </header>
   );

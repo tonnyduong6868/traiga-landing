@@ -163,8 +163,17 @@ export function Incubator() {
   return (
     <figure className="tray-wrap">
       <div className="tray-head">
-        <span className="tray-title">KHAY ẤP</span>
-        <span className="tray-sub">{formatUptime(seconds)}</span>
+        <div className="tray-head-left">
+          <span className="live-dot" aria-hidden="true">
+            <span className="live-dot-ping" />
+            <span className="live-dot-core" />
+          </span>
+          <span className="tray-title">KHAY ẤP TELEMETRY</span>
+          <span className="tray-tag">REALTIME CLUSTER</span>
+        </div>
+        <div className="tray-head-right">
+          <span className="tray-sub">{formatUptime(seconds)}</span>
+        </div>
       </div>
 
       <div
@@ -174,36 +183,47 @@ export function Incubator() {
         aria-label="Mô phỏng bảng điều khiển: lưới ô, mỗi ô là một account với trạng thái đang chạy, đang nuôi, nghỉ hoặc đã chết."
         style={{ "--cols": cols } as React.CSSProperties}
       >
-        {eggs.map((egg, i) => (
-          <span
-            key={i}
-            className="egg"
-            data-s={egg.s}
-            style={{ animationDelay: egg.delay }}
-          />
-        ))}
+        {eggs.map((egg, i) => {
+          const stateLabel =
+            egg.s === "run"
+              ? "Đang chạy"
+              : egg.s === "warm"
+              ? "Đang nuôi"
+              : egg.s === "idle"
+              ? "Nghỉ"
+              : "Đã chết";
+          return (
+            <span
+              key={i}
+              className="egg"
+              data-s={egg.s}
+              title={`Profile #${i + 1} · ${stateLabel}`}
+              style={{ animationDelay: egg.delay }}
+            />
+          );
+        })}
       </div>
 
       <div className="tray-read" aria-hidden="true">
-        <span className="rd">
+        <span className="rd rd-run">
           <i className="dot d-run" />
           <b>{counts.run}</b> đang chạy
         </span>
-        <span className="rd">
+        <span className="rd rd-warm">
           <i className="dot d-warm" />
           <b>{counts.warm}</b> đang nuôi
         </span>
-        <span className="rd">
+        <span className="rd rd-idle">
           <i className="dot d-idle" />
           <b>{counts.idle}</b> nghỉ
         </span>
-        <span className="rd">
+        <span className="rd rd-dead">
           <i className="dot d-dead" />
           <b>{counts.dead}</b> đã chết
         </span>
       </div>
       <figcaption>
-        Mô phỏng bảng điều khiển. Số thật phụ thuộc máy, proxy và số account của anh.
+        Mô phỏng bảng điều khiển thời gian thực. Sức chứa thực tế phụ thuộc cấu hình RAM, đường truyền và số proxy của anh.
       </figcaption>
     </figure>
   );

@@ -69,21 +69,30 @@ export function Proof() {
         <h2 className="pf-h">Chưa quen thì đây là những gì anh nắm chắc được.</h2>
 
         <div className="pf-grid">
-          {proof.assurances.map((a) => (
-            <div className="pf-card" key={a.title}>
-              <h3>{a.title}</h3>
-              <p>{a.body}</p>
-            </div>
-          ))}
+          {proof.assurances.map((a, i) => {
+            const icons = [
+              <svg key="1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg>,
+              <svg key="2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>,
+              <svg key="3" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 14 10" /></svg>,
+              <svg key="4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
+            ];
+            return (
+              <div className="pf-card" key={a.title}>
+                <div className="pf-icon">{icons[i % icons.length]}</div>
+                <h3>{a.title}</h3>
+                <p>{a.body}</p>
+              </div>
+            );
+          })}
         </div>
 
         <p className="pf-line">
           Tôi bán trực tiếp, không qua đại lý. Có gì hỏi thẳng{" "}
-          <a href={contact.zalo} target="_blank" rel="noopener">
+          <a className="pf-link" href={contact.zalo} target="_blank" rel="noopener">
             Zalo
           </a>{" "}
           hoặc{" "}
-          <a href={contact.messenger} target="_blank" rel="noopener">
+          <a className="pf-link" href={contact.messenger} target="_blank" rel="noopener">
             Messenger
           </a>
           , kể cả khi anh chưa định mua.

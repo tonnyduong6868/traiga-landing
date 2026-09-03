@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { SectionHead } from "./SectionHead";
 
 /**
@@ -269,6 +272,13 @@ const GROUPS: Group[] = [
 const TOTAL = GROUPS.reduce((n, g) => n + g.items.length, 0);
 
 export function Features() {
+  const [activeTab, setActiveTab] = useState<string>("all");
+
+  const visibleGroups =
+    activeTab === "all"
+      ? GROUPS
+      : GROUPS.filter((g) => g.name === activeTab);
+
   return (
     <section id="tinhnang" className="sec">
       <div className="wrap">
@@ -283,34 +293,68 @@ export function Features() {
           biết mình sắp mở ra cái gì. Không có mục nào khoá theo gói — mua là mở hết.
         </p>
 
-        {GROUPS.map((g) => (
-          <div className="fgroup" key={g.name}>
-            <h3 className="fgroup-h">
-              <span
-                className="fgroup-dot"
-                style={{ background: g.tone }}
-                aria-hidden="true"
-              />
-              {g.name}
-              <span className="sh-rule" aria-hidden="true" />
-              <span className="fgroup-n">{g.items.length} mục</span>
-            </h3>
+        {/* Category Tabs */}
+        <div className="ftabs" role="tablist" aria-label="Lọc nhóm tính năng">
+          <button
+            type="button"
+            className={activeTab === "all" ? "ftab on" : "ftab"}
+            onClick={() => setActiveTab("all")}
+          >
+            Tất cả <span className="ftab-badge">{TOTAL}</span>
+          </button>
+          {GROUPS.map((g) => (
+            <button
+              key={g.name}
+              type="button"
+              className={activeTab === g.name ? "ftab on" : "ftab"}
+              onClick={() => setActiveTab(g.name)}
+            >
+              <span className="ftab-dot" style={{ background: g.tone }} aria-hidden="true" />
+              {g.name} <span className="ftab-badge">{g.items.length}</span>
+            </button>
+          ))}
+        </div>
 
-            <div className="fgrid">
-              {g.items.map((f) => (
-                <article className="fcard" key={f.title}>
-                  <h4>{f.title}</h4>
-                  <p className="fcard-role">{f.role}</p>
-                  <ul className="fcard-list">
-                    {f.points.map((p, i) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
+        <div className="fgroups-wrap">
+          {visibleGroups.map((g) => (
+            <div className="fgroup" key={g.name}>
+              <h3 className="fgroup-h">
+                <span
+                  className="fgroup-dot"
+                  style={{ background: g.tone }}
+                  aria-hidden="true"
+                />
+                <span className="fgroup-name">{g.name}</span>
+                <span className="sh-rule" aria-hidden="true" />
+                <span className="fgroup-n">{g.items.length} mục</span>
+              </h3>
+
+              <div className="fgrid">
+                {g.items.map((f) => (
+                  <article className="fcard" key={f.title}>
+                    <div className="fcard-header">
+                      <span className="fcard-pill" style={{ borderColor: `${g.tone}33`, color: g.tone }}>
+                        {g.name}
+                      </span>
+                      <h4>{f.title}</h4>
+                      <p className="fcard-role">{f.role}</p>
+                    </div>
+                    <ul className="fcard-list">
+                      {f.points.map((p, i) => (
+                        <li key={i}>
+                          <svg className="fc-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

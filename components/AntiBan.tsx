@@ -96,24 +96,48 @@ const MECHS = [
     chip: "Màn hình · Múi giờ",
     title: "Vân tay riêng",
     body: "Mỗi profile một bộ vân tay trình duyệt cố định — màn hình, phần cứng, múi giờ, ngôn ngữ — không đổi giữa các phiên.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
   },
   {
     tone: "t-p",
     chip: "Chữ ký TLS",
     title: "Ngụy trang tầng TLS",
     body: "Không chỉ đổi User-Agent. Chữ ký bắt tay TLS và thứ tự header đi theo đúng bản Chrome mà acc khai báo.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+    ),
   },
   {
     tone: "t-i",
     chip: "Phiên gateway",
     title: "Giữ kết nối sống",
     body: "Khi seed, account vẫn duy trì kết nối thời gian thực và đọc dữ liệu như người đang mở app — không phải chỉ bắn API rồi cút.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2 12h5l3 7 4-14 3 7h5" />
+      </svg>
+    ),
   },
   {
     tone: "t-o",
     chip: "Hạn mức/giờ",
     title: "Hạn mức hành động",
     body: "Nhắn tin, đổi hồ sơ, join server đều có trần theo giờ và theo ngày. Chạm trần thì dừng, không cố.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 14 10" />
+      </svg>
+    ),
   },
 ];
 
@@ -190,21 +214,34 @@ export function AntiBan() {
         <div className="mechs">
           {MECHS.map((m) => (
             <div className="mech" key={m.title}>
-              <p className="mech-c">
-                <i className={`sq ${m.tone}`} />
-                {m.chip}
-              </p>
+              <div className="mech-top">
+                <span className="mech-icon">{m.icon}</span>
+                <p className="mech-c">
+                  <i className={`sq ${m.tone}`} />
+                  {m.chip}
+                </p>
+              </div>
               <h3>{m.title}</h3>
               <p>{m.body}</p>
             </div>
           ))}
         </div>
 
-        <p className="note">
-          Nói thẳng: không công cụ nào cam kết được 0% ban, kể cả cái này. Trại Gà làm
-          giảm rủi ro và cho anh thấy sớm khi có con gặp vấn đề — chứ không bán bùa hộ
-          mệnh.
-        </p>
+        <div className="note-card">
+          <div className="nc-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div className="nc-text">
+            <h4>Cam kết minh bạch về rủi ro</h4>
+            <p className="note">
+              Nói thẳng: không công cụ nào cam kết được 0% ban, kể cả cái này. Trại Gà làm
+              giảm rủi ro tối đa và cho anh thấy sớm khi có con gặp vấn đề — chứ không bán bùa hộ
+              mệnh.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
