@@ -125,12 +125,12 @@ export const steps = [
 ] as const
 
 export const release = {
-  version: '1.1.3',
+  version: '1.1.4',
   size: '78 MB',
   requires: 'Windows 10/11 · 64-bit',
   date: '04.09.2026',
   downloadUrl:
-    'https://github.com/tonnyduong6868/traigaapp/releases/download/v1.1.3/omnilogin-app-setup-1.1.3.exe',
+    'https://github.com/tonnyduong6868/traigaapp/releases/download/v1.1.4/omnilogin-app-setup-1.1.4.exe',
   allReleasesUrl: 'https://github.com/tonnyduong6868/traigaapp/releases',
 } as const
 
